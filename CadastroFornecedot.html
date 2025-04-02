@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro do Fornecedor</title>
+</head>
+<body>
+    <h2>CADASTRO DE FORNECEDOR</h2>
+    <form method="post" action="cadastro_fornecedor.php">
+        <button type="button" onclick="ocultarBloco('cliente')"></button><br><br>
+        <div id="cliente" >
+            
+
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" required placeholder="Digite o nome da empresa"><br><br>
+
+            <label for="cnpj">CNPJ:</label><br>
+            <input type="text" id="cnpj" name="cnpj" oninput="validarCNPJ(this)" required placeholder="Ex. xxxxxxxxxxxxxx"><br><br>
+            <script src="validacao-cnpj.js"></script>
+
+        </div>
+
+        <button type="button" onclick="ocultarBloco('servicos')"></button><br><br>
+        <div id="servicos" >
+            
+
+            <label for="servico">Serviço:</label><br>
+            <select id="servico" name="servico" required>
+                <option value="" disabled selected>Selecione um serviço</option>
+    
+                <!-- Tecnologia e TI -->
+                <option value="Desenvolvimento de Software">Desenvolvimento de Software</option>
+                <option value="Suporte Técnico em TI">Suporte Técnico em TI</option>
+                <option value="Segurança da Informação">Segurança da Informação</option>
+                <option value="Desenvolvimento de Aplicativos">Desenvolvimento de Aplicativos</option>
+                <option value="Gestão de Infraestrutura em Nuvem">Gestão de Infraestrutura em Nuvem</option>
+                <option value="Automação de Processos">Automação de Processos</option>
+            
+                <!-- Consultoria e Treinamento -->
+                <option value="Consultoria Empresarial">Consultoria Empresarial</option>
+                <option value="Consultoria Financeira">Consultoria Financeira</option>
+                <option value="Consultoria em RH">Consultoria em RH</option>
+                <option value="Treinamentos Corporativos">Treinamentos Corporativos</option>
+                <option value="Coaching Profissional">Coaching Profissional</option>
+            
+                <!-- Saúde e Bem-Estar -->
+                <option value="Atendimento Médico Domiciliar">Atendimento Médico Domiciliar</option>
+                <option value="Fisioterapia e Reabilitação">Fisioterapia e Reabilitação</option>
+                <option value="Terapia e Psicologia">Terapia e Psicologia</option>
+                <option value="Personal Trainer">Personal Trainer</option>
+                <option value="Nutrição e Dietética">Nutrição e Dietética</option>
+            
+                <!-- Engenharia e Construção -->
+                <option value="Projetos Arquitetônicos">Projetos Arquitetônicos</option>
+                <option value="Manutenção Predial">Manutenção Predial</option>
+                <option value="Engenharia Elétrica e Hidráulica">Engenharia Elétrica e Hidráulica</option>
+                <option value="Paisagismo e Jardinagem">Paisagismo e Jardinagem</option>
+                <option value="Topografia e Georreferenciamento">Topografia e Georreferenciamento</option>
+            
+                <!-- Marketing e Publicidade -->
+                <option value="Marketing Digital">Marketing Digital</option>
+                <option value="Criação de Sites">Criação de Sites</option>
+                <option value="Gestão de Redes Sociais">Gestão de Redes Sociais</option>
+                <option value="Produção de Conteúdo">Produção de Conteúdo</option>
+                <option value="Edição de Vídeos">Edição de Vídeos</option>
+            
+                <!-- Jurídico e Contabilidade -->
+                <option value="Assessoria Jurídica">Assessoria Jurídica</option>
+                <option value="Contabilidade e Escrituração Fiscal">Contabilidade e Escrituração Fiscal</option>
+                <option value="Consultoria Tributária">Consultoria Tributária</option>
+                <option value="Registro de Marcas e Patentes">Registro de Marcas e Patentes</option>
+            
+                <!-- Logística e Transportes -->
+                <option value="Transporte de Cargas">Transporte de Cargas</option>
+                <option value="Logística e Armazenamento">Logística e Armazenamento</option>
+                <option value="Entrega e Motoboy">Entrega e Motoboy</option>
+                <option value="Mudanças e Fretes">Mudanças e Fretes</option>
+            
+                <!-- Outros Serviços -->
+                <option value="Fotografia e Filmagem">Fotografia e Filmagem</option>
+                <option value="Eventos e Cerimoniais">Eventos e Cerimoniais</option>
+                <option value="Tradução e Interpretação">Tradução e Interpretação</option>
+                <option value="Serviços Domésticos">Serviços Domésticos</option>
+                <option value="Manutenção de Equipamentos">Manutenção de Equipamentos</option>
+            
+            </select><br><br>
+
+            <label for="descricao">Descrição:</label><br>
+            <input type="text" id="descricao" name="descricao" required placeholder="Informa a dercição sobre o serviço"><br><br>
+
+
+        </div>
+
+
+        <script src="OcultarBloco.js"></script> 
+        <input type="submit" value="Cadastrar">
+    </form>
+    
+</body>
+</html>
