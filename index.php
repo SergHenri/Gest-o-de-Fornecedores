@@ -42,18 +42,24 @@ try {
         foreach ($tabelas as $tabela) {
             echo "<h3>Tabela: $tabela</h3>";
 
-            // Obter as colunas da tabela
-            $colunas = array_keys($pdo->query("SELECT * FROM $tabela LIMIT 1")->fetch(PDO::FETCH_ASSOC));
+            // Obter as colunas da tabela com segurança
+            $resultadoColunas = $pdo->query("SELECT * FROM $tabela LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+            if ($resultadoColunas) {
+                $colunas = array_keys($resultadoColunas);
+            } else {
+                $colunas = []; // Tabela está vazia
+            }
 
             // Filtro por coluna e texto
-            echo "<label for='coluna_$tabela'>Filtrar por coluna:</label>";
-            echo "<select id='coluna_$tabela'>";
-            foreach ($colunas as $coluna) {
-                echo "<option value='$coluna'>$coluna</option>";
+            if (!empty($colunas)) {
+                echo "<label for='coluna_$tabela'>Filtrar por coluna:</label>";
+                echo "<select id='coluna_$tabela'>";
+                foreach ($colunas as $coluna) {
+                    echo "<option value='$coluna'>$coluna</option>";
+                }
+                echo "</select>";
+                echo "<input type='text' onkeyup='filtrarTabela(\"$tabela\")' placeholder='Digite o valor...' id='filtro_$tabela'>";
             }
-            echo "</select>";
-
-            echo "<input type='text' onkeyup='filtrarTabela(\"$tabela\")' placeholder='Digite o valor...' id='filtro_$tabela'>";
 
             $stmt = $pdo->query("SELECT * FROM $tabela");
             $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
