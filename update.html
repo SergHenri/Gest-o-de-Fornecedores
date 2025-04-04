@@ -1,44 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html> <!-- Define que o documento é HTML5 -->
+<html lang="pt-br"> <!-- Define o idioma da página como português do Brasil -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar ou Deletar Registro</title>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade para dispositivos móveis -->
+    <title>Atualizar ou Deletar Registro</title> <!-- Título da aba do navegador -->
 </head>
 <body>
-    <h2>Atualizar ou Deletar Registro</h2>
+    <h2>Atualizar ou Deletar Registro</h2> <!-- Título principal da página -->
 
+    <!-- Navegação entre páginas -->
     <nav>
-        <a href="PageOne.html">Inicial</a>
-        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a>
-        <a href="update.html">Editar</a>
+        <a href="PageOne.html">Inicial</a> <!-- Link para a página inicial -->
+        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a> <!-- Link para o formulário de cadastro -->
     </nav>
 
     <br>
     <br>
     
+    <!-- Formulário que envia dados via POST para o arquivo PHP 'update.php' -->
     <form action="update.php" method="POST">
+        
+        <!-- Campo para o nome da tabela no banco de dados -->
         <label for="tabela">Nome da Tabela:</label>
-        <input type="text" name="tabela" required>
+        <input type="text" name="tabela" required> <!-- Campo obrigatório -->
         <br><br>
 
+        <!-- Campo para indicar qual coluna será alterada -->
         <label for="coluna_alterar">Nome da Coluna a Alterar:</label>
-        <input type="text" name="coluna_alterar">
+        <input type="text" name="coluna_alterar"> <!-- Pode ser deixado em branco caso a ação seja deletar -->
         <br><br>
 
+        <!-- Campo para inserir o novo valor que será atualizado na coluna -->
         <label for="novo_valor">Novo Valor:</label>
-        <input type="text" name="novo_valor">
+        <input type="text" name="novo_valor"> <!-- Usado apenas na ação de atualização -->
         <br><br>
 
+        <!-- Campo para indicar qual coluna será usada como filtro (condição WHERE) -->
         <label for="coluna_filtro">Nome da Coluna para Filtragem:</label>
-        <input type="text" name="coluna_filtro" required>
+        <input type="text" name="coluna_filtro" required> <!-- Campo obrigatório -->
         <br><br>
 
+        <!-- Valor da coluna usada no filtro, define qual registro será afetado -->
         <label for="valor_filtro">Valor da Coluna Filtrada:</label>
-        <input type="text" name="valor_filtro" required>
+        <input type="text" name="valor_filtro" required> <!-- Campo obrigatório -->
         <br><br>
 
-        <!-- Botões com valores diferentes -->
+        <!-- Dois botões: um para atualizar e outro para deletar -->
+        <!-- O valor enviado no campo 'acao' será usado no PHP para decidir qual operação executar -->
         <button type="submit" name="acao" value="atualizar">Atualizar</button>
         <button type="submit" name="acao" value="deletar">Deletar</button>
     </form>

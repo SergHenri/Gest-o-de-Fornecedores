@@ -1,40 +1,44 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML -->
 <html>
 <head>
-    <title>Cadastro do Fornecedor</title>
+    <title>Cadastro do Fornecedor</title> <!-- Título da página -->
 </head>
 <body>
 
-    <h2>CADASTRO DE FORNECEDOR</h2>
+    <h2>CADASTRO DE FORNECEDOR</h2> <!-- Título principal na página -->
     
     <nav class="">
+        <!-- Menu de navegação -->
         <a href="PageOne.html">Inicial</a>
         <a href="index.php">Fornecedores</a>
     </nav>
 
-    
+    <!-- Início do formulário de cadastro de fornecedor -->
     <form method="post" action="cadastro_fornecedor.php">
+        <!-- Botão para ocultar/exibir o bloco "fornecedor" -->
         <button type="button" onclick="ocultarBloco('fornecedor')"></button><br><br>
-        <div id="fornecedor" >
-            
-
+        
+        <div id="fornecedor">
+            <!-- Campo de nome da empresa -->
             <label for="nome">Nome:</label><br>
             <input type="text" id="nome" name="nome" required placeholder="Digite o nome da empresa"><br><br>
 
+            <!-- Campo de CNPJ com validação -->
             <label for="cnpj">CNPJ:</label><br>
             <input type="text" id="cnpj" name="cnpj" oninput="validarCNPJ(this)" required placeholder="Ex. xxxxxxxxxxxxxx"><br><br>
-            <script src="validacao-cnpj.js"></script>
-
+            <script src="validacao-cnpj.js"></script> <!-- Script externo para validação de CNPJ -->
         </div>
 
+        <!-- Botão para ocultar/exibir o bloco "serviço" -->
         <button type="button" onclick="ocultarBloco('servico')"></button><br><br>
-        <div id="servico" >
-            
-
+        
+        <div id="servico">
+            <!-- Seleção do tipo de serviço prestado -->
             <label for="servico">Serviço:</label><br>
             <select id="servico" name="servico" required>
                 <option value="" disabled selected>Selecione um serviço</option>
-    
+                
+                <!-- Diversas categorias de serviços -->
                 <!-- Tecnologia e TI -->
                 <option value="Desenvolvimento de Software">Desenvolvimento de Software</option>
                 <option value="Suporte Técnico em TI">Suporte Técnico em TI</option>
@@ -89,17 +93,18 @@
                 <option value="Tradução e Interpretação">Tradução e Interpretação</option>
                 <option value="Serviços Domésticos">Serviços Domésticos</option>
                 <option value="Manutenção de Equipamentos">Manutenção de Equipamentos</option>
-            
             </select><br><br>
 
+            <!-- Campo de descrição do serviço -->
             <label for="descricao">Descrição:</label><br>
             <input type="text" id="descricao" name="descricao" required placeholder="Informa a dercição sobre o serviço"><br><br>
-
-
         </div>
         
+        <!-- Botão para ocultar/exibir o bloco "endereço" -->
         <button type="button" onclick="ocultarBloco('endereco')"></button><br><br>
+        
         <div id="endereco">
+            <!-- Campos de endereço do fornecedor -->
             <label for="logradouro">logradouro</label>
             <input type="text" id="logradouro" name="logradouro" required placeholder="Digite o logradouro"><br><br>
 
@@ -120,11 +125,13 @@
             
             <label for="uf">UF</label>
             <input type="text" id="uf" name="uf" required placeholder="Digite o UF"><br><br>
-
         </div>
 
+        <!-- Botão para ocultar/exibir o bloco "telefone" -->
         <button type="button" onclick="ocultarBloco('telefone')"></button><br><br>
+        
         <div id="telefone">
+            <!-- Campos de contato -->
             <label for="principal">Principal</label>
             <input type="text" id="principal" name="principal" placeholder="Digite o telefone principal"><br><br>
         
@@ -135,18 +142,23 @@
             <input type="text" id="celular" name="celular" placeholder="Digite o celular"><br><br>
         </div>
 
+        <!-- Botão para ocultar/exibir o bloco "contratos" -->
         <button type="button" onclick="ocultarBloco('contratos')"></button><br><br>
+        
         <div id="contratos">
+            <!-- Período de contrato -->
             <label for="data_inicial">Data Inicial</label>
             <input type="date" id="data_inicial" name="data_inicial" required><br><br>
         
             <label for="data_final">Data Final</label>
             <input type="date" id="data_final" name="data_final" required><br><br>
-        
         </div>
 
+        <!-- Botão para ocultar/exibir o bloco "clientes_fornecedor" -->
         <button type="button" onclick="ocultarBloco('clientes_fornecedor')"></button><br><br>
+        
         <div id="clientes_fornecedor">
+            <!-- Informações de clientes e serviços prestados -->
             <label for="servicos">Serviço</label>
             <input type="text" id="servicos" name="servicos" placeholder="Digite o serviço"><br><br>
         
@@ -154,7 +166,10 @@
             <input type="text" id="cliente" name="cliente" placeholder="Digite o cliente"><br><br>
         </div>
 
+        <!-- Script para ocultar blocos dinamicamente -->
         <script src="OcultarBloco.js"></script> 
+
+        <!-- Botão de envio do formulário -->
         <input type="submit" value="Cadastrar">
     </form>
     

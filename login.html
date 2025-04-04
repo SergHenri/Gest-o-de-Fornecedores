@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html> <!-- Declara o tipo de documento como HTML5 -->
+<html lang="pt-br"> <!-- Início do documento HTML com idioma definido como português do Brasil -->
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres como UTF-8 -->
+    <title>Login</title> <!-- Título da página que aparece na aba do navegador -->
 </head>
-<body>
+<body> <!-- Início do corpo da página -->
 
-<div class="">
-    <h2>Login</h2>
-    <form action="login.php" method="POST">
-        <label for="tipo_usuario">Tipo de Usuário:</label>
-        <select name="tipo_usuario" id="tipo_usuario" required>
-            <option value="selecione">Selecione um opção</option>
-            <option value="usuario">Usuário</option>
-            <option value="admin">Administrador</option>
+<div class=""> <!-- Div para agrupar o conteúdo do formulário (classe vazia) -->
+    <h2>Login</h2> <!-- Título do formulário -->
+
+    <form action="login.php" method="POST"> <!-- Início do formulário que envia os dados via POST para login.php -->
+
+        <label for="tipo_usuario">Tipo de Usuário:</label> <!-- Rótulo para o seletor de tipo de usuário -->
+        <select name="tipo_usuario" id="tipo_usuario" required> <!-- Menu suspenso para escolher o tipo de usuário (obrigatório) -->
+            <option value="selecione">Selecione um opção</option> <!-- Opção padrão para solicitar seleção -->
+            <option value="usuario">Usuário</option> <!-- Opção para usuário comum -->
+            <option value="admin">Administrador</option> <!-- Opção para administrador -->
         </select>
 
-        <input type="text" name="usuario" placeholder="Usuário" required>
-        <input type="password" name="senha" placeholder="Senha" required>
+        <input type="text" name="usuario" placeholder="Usuário" required> <!-- Campo de entrada para o nome de usuário (obrigatório) -->
+        <input type="password" name="senha" placeholder="Senha" required> <!-- Campo de entrada para a senha (obrigatório) -->
 
-        <button type="submit">Entrar</button>
+        <button type="submit">Entrar</button> <!-- Botão para enviar o formulário -->
     </form>
 </div>
 
 </body>
-</html>
+</html> <!-- Fim do documento HTML -->

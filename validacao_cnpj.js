@@ -1,13 +1,16 @@
+// Função para validar um CNPJ passado via campo de input
 function validarCNPJ(input) {
-    // Remove caracteres não numéricos
+    // Remove todos os caracteres que não forem dígitos (ex: pontos, barras, traços)
     let cnpj = input.value.replace(/\D/g, '');
 
-    // Verifica se o CNPJ tem 14 dígitos
+    // Verifica se o CNPJ tem exatamente 14 dígitos
     if (cnpj.length !== 14) {
-        //document.getElementById('mensagemErroCNPJ').textContent = 'CNPJ inválido';
-        return;
+        // Aqui você poderia mostrar uma mensagem de erro (está comentado no momento)
+        // document.getElementById('mensagemErroCNPJ').textContent = 'CNPJ inválido';
+        return; // Encerra a função se o CNPJ for inválido
     }
 
-    // Limpa a mensagem de erro se o CNPJ for válido
-    //document.getElementById('mensagemErroCNPJ').textContent = '';
+    // Se o CNPJ tiver 14 dígitos, considera como válido (não é uma validação matemática completa ainda)
+    // A linha abaixo limpa a mensagem de erro, caso exista (também está comentada)
+    // document.getElementById('mensagemErroCNPJ').textContent = '';
 }
