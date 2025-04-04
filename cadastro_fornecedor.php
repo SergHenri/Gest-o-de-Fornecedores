@@ -1,4 +1,9 @@
 <?php
+
+define("USER", "root");
+define("PASS", "root");
+
+
 try {
     // Conexão com o servidor MySQL (sem especificar o banco de dados)
     $pdo = new PDO("mysql:host=localhost", "root", "root");
@@ -38,10 +43,55 @@ $criarTabelaServicos = "CREATE TABLE IF NOT EXISTS SERVICOS (
     FOREIGN KEY (FK_IDFORNECEDOR) REFERENCES FORNECEDOR(ID)
 )";
 
+$criarTabelaEndereco = "CREATE TABLE IF NOT EXISTS ENDERECO (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    FK_IDFORNECEDOR INT NOT NULL,
+    LOGRADOURO VARCHAR(255) NOT NULL,
+    NUMERO VARCHAR(10) NOT NULL,
+    COMPLEMENTO VARCHAR(255) NULL,
+    CEP VARCHAR(9) NOT NULL,
+    BAIRRO VARCHAR(255),
+    CIDADE VARCHAR(255) NOT NULL,
+    UF CHAR(2) NOT NULL,
+    FOREIGN KEY (FK_IDFORNECEDOR) REFERENCES FORNECEDOR(ID)
+)";
+
+$criarTabelaTelefone = "CREATE TABLE IF NOT EXISTS TELEFONE (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    FK_IDFORNECEDOR INT NOT NULL,
+    PRINCIPAL VARCHAR(20),
+    TELEFONE VARCHAR(20),
+    CELULAR VARCHAR(20),
+    FOREIGN KEY (FK_IDFORNECEDOR) REFERENCES FORNECEDOR(ID)
+)";
+
+$criarTabelaContratos = "CREATE TABLE IF NOT EXISTS CONTRATOS (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    FK_IDFORNECEDOR INT NOT NULL,
+    FK_IDSERVICOS INT NOT NULL,
+    DATA_INICIAL DATE NOT NULL,
+    DATA_FINAL DATE NOT NULL,
+    DURACAO INT,
+    FOREIGN KEY (FK_IDFORNECEDOR) REFERENCES FORNECEDOR(ID),
+    FOREIGN KEY (FK_IDSERVICOS) REFERENCES SERVICOS(ID)
+)";
+
+$criarTabelaClienteForcedor = "CREATE TABLE IF NOT EXISTS CLIENTES_FORNECEDOR (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    FK_IDFORNECEDOR INT NOT NULL,
+    SERVICO VARCHAR(255),
+    CLIENTE VARCHAR(255),
+    FOREIGN KEY (FK_IDFORNECEDOR) REFERENCES FORNECEDOR(ID)
+)";
+
 
 // Criação das tabelas (se necessário)
 verificarOuCriarTabela($pdo, $criarTabelaFornecedor);
 verificarOuCriarTabela($pdo, $criarTabelaServicos);
+verificarOuCriarTabela($pdo, $criarTabelaEndereco);
+verificarOuCriarTabela($pdo, $criarTabelaTelefone);
+verificarOuCriarTabela($pdo, $criarTabelaContratos);
+verificarOuCriarTabela($pdo, $criarTabelaClienteForcedor);
 
 
 // Inserção de dados do formulário
@@ -58,6 +108,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare("INSERT INTO SERVICOS (FK_IDFORNECEDOR, SERVICO, DESCRICAO) VALUES (:fk_idfornecedor, :servico, :descricao)");
         $stmt->execute(['fk_idfornecedor' => $fornecedorId, 'servico' => $_POST['servico'], 'descricao' => $_POST['descricao']]);
         $servicoId = $pdo->lastInsertId();
+
+        // Inserir dados na tabela ENDERECO
+        $stmt = $pdo->prepare("INSERT INTO ENDERECO (FK_IDFORNECEDOR, LOGRADOURO, NUMERO, COMPLEMENTO, CEP, BAIRRO, CIDADE, UF) VALUES (:fk_idfornecedor, :logradouro, :numero, :complemento, :cep, :bairro, :cidade, :uf)");
+        $stmt->execute(['fk_idfornecedor' => $fornecedorId, 'logradouro' => $_POST['logradouro'], 'numero' => $_POST['numero'], 'complemento' => $_POST['complemento'], 'cep' => $_POST['cep'], 'bairro' => $_POST['bairro'], 'cidade' => $_POST['cidade'], 'uf' => $_POST['uf']]);
+
+        // Inserir dados na tabela TELEFONE
+        $stmt = $pdo->prepare("INSERT INTO TELEFONE (FK_IDFORNECEDOR, PRINCIPAL, TELEFONE, CELULAR) VALUES (:fk_idfornecedor, :principal, :telefone, :celular)");
+        $stmt->execute(['fk_idfornecedor' => $fornecedorId, 'principal' => $_POST['principal'], 'telefone' => $_POST['telefone'], 'celular' => $_POST['celular']]);
+
+        // Inserir dados na tabela CONTRATOS
+        $stmt = $pdo->prepare("INSERT INTO CONTRATOS (FK_IDFORNECEDOR, FK_IDSERVICOS, DATA_INICIAL, DATA_FINAL) VALUES (:fk_idfornecedor, :fk_idservicos, :data_inicial, :data_final)");
+        $stmt->execute(['fk_idfornecedor' => $fornecedorId, 'fk_idservicos' => $servicoId, 'data_inicial' => $_POST['data_inicial'], 'data_final' => $_POST['data_final']]);
+
+        // Inserir dados na tabela CLIENTES_FORNECEDOR
+        $stmt = $pdo->prepare("INSERT INTO CLIENTES_FORNECEDOR (FK_IDFORNECEDOR, SERVICO, CLIENTE) VALUES (:fk_idfornecedor, :servico, :cliente)");
+        $stmt->execute(['fk_idfornecedor' => $fornecedorId, 'servico' => $_POST['servico'], 'cliente' => $_POST['cliente']]);
+
 
         $pdo->commit();
         echo "Dados inseridos com sucesso!";

@@ -8,7 +8,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Criar o banco de dados se não existir
-    $dbName = "FORNECEDORES";
+    $dbName = "DadosFornecedor";
     $pdo->exec("CREATE DATABASE IF NOT EXISTS $dbName");
 
     // Conectar ao banco criado

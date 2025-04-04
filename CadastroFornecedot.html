@@ -6,8 +6,8 @@
 <body>
     <h2>CADASTRO DE FORNECEDOR</h2>
     <form method="post" action="cadastro_fornecedor.php">
-        <button type="button" onclick="ocultarBloco('cliente')"></button><br><br>
-        <div id="cliente" >
+        <button type="button" onclick="ocultarBloco('fornecedor')"></button><br><br>
+        <div id="fornecedor" >
             
 
             <label for="nome">Nome:</label><br>
@@ -89,7 +89,62 @@
 
 
         </div>
+        
+        <button type="button" onclick="ocultarBloco('endereco')"></button><br><br>
+        <div id="endereco">
+            <label for="logradouro">logradouro</label>
+            <input type="text" id="logradouro" name="logradouro" required placeholder="Digite o logradouro"><br><br>
 
+            <label for="numero">Numero</label>
+            <input type="text" id="numero" name="numero" required placeholder="Digite o Numero"><br><br>
+            
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Digite o Complemento"><br><br>
+            
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" required placeholder="Digite o CEP"><br><br>
+            
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" name="bairro" required placeholder="Digite o Bairro"><br><br>
+            
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" name="cidade" required placeholder="Digite a Cidade"><br><br>
+            
+            <label for="uf">UF</label>
+            <input type="text" id="uf" name="uf" required placeholder="Digite o UF"><br><br>
+
+        </div>
+
+        <button type="button" onclick="ocultarBloco('telefone')"></button><br><br>
+        <div id="telefone">
+            <label for="principal">Principal</label>
+            <input type="text" id="principal" name="principal" placeholder="Digite o telefone principal"><br><br>
+        
+            <label for="telefone">Telefone</label>
+            <input type="text" id="telefone" name="telefone" placeholder="Digite o telefone"><br><br>
+        
+            <label for="celular">Celular</label>
+            <input type="text" id="celular" name="celular" placeholder="Digite o celular"><br><br>
+        </div>
+
+        <button type="button" onclick="ocultarBloco('contratos')"></button><br><br>
+        <div id="contratos">
+            <label for="data_inicial">Data Inicial</label>
+            <input type="date" id="data_inicial" name="data_inicial" required><br><br>
+        
+            <label for="data_final">Data Final</label>
+            <input type="date" id="data_final" name="data_final" required><br><br>
+        
+        </div>
+
+        <button type="button" onclick="ocultarBloco('clientes_fornecedor')"></button><br><br>
+        <div id="clientes_fornecedor">
+            <label for="servico">Serviço</label>
+            <input type="text" id="servico" name="servico" placeholder="Digite o serviço"><br><br>
+        
+            <label for="cliente">Cliente</label>
+            <input type="text" id="cliente" name="cliente" placeholder="Digite o cliente"><br><br>
+        </div>
 
         <script src="OcultarBloco.js"></script> 
         <input type="submit" value="Cadastrar">

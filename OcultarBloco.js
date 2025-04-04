@@ -1,8 +1,8 @@
-function ocultarBloco(idcliente) {
-    var cliente = document.getElementById(idcliente);
-    if (cliente.style.display === 'none') {
-        cliente.style.display = 'block';
+function ocultarBloco(idfornecedor) {
+    var fornecedor = document.getElementById(idfornecedor);
+    if (fornecedor.style.display === 'none') {
+        fornecedor.style.display = 'block';
     } else {
-        cliente.style.display = 'none';
+        fornecedor.style.display = 'none';
     }
 }
