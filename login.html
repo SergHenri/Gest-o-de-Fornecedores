@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+</head>
+<body>
+
+<div class="">
+    <h2>Login</h2>
+    <form action="login.php" method="POST">
+        <label for="tipo_usuario">Tipo de Usuário:</label>
+        <select name="tipo_usuario" id="tipo_usuario" required>
+            <option value="selecione">Selecione um opção</option>
+            <option value="usuario">Usuário</option>
+            <option value="admin">Administrador</option>
+        </select>
+
+        <input type="text" name="usuario" placeholder="Usuário" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+
+        <button type="submit">Entrar</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar ou Deletar Registro</title>
+</head>
+<body>
+    <h2>Atualizar ou Deletar Registro</h2>
+
+    <nav>
+        <a href="PageOne.html">Inicial</a>
+        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a>
+        <a href="update.html">Editar</a>
+    </nav>
+
+    <br>
+    <br>
+    
+    <form action="update.php" method="POST">
+        <label for="tabela">Nome da Tabela:</label>
+        <input type="text" name="tabela" required>
+        <br><br>
+
+        <label for="coluna_alterar">Nome da Coluna a Alterar:</label>
+        <input type="text" name="coluna_alterar">
+        <br><br>
+
+        <label for="novo_valor">Novo Valor:</label>
+        <input type="text" name="novo_valor">
+        <br><br>
+
+        <label for="coluna_filtro">Nome da Coluna para Filtragem:</label>
+        <input type="text" name="coluna_filtro" required>
+        <br><br>
+
+        <label for="valor_filtro">Valor da Coluna Filtrada:</label>
+        <input type="text" name="valor_filtro" required>
+        <br><br>
+
+        <!-- Botões com valores diferentes -->
+        <button type="submit" name="acao" value="atualizar">Atualizar</button>
+        <button type="submit" name="acao" value="deletar">Deletar</button>
+    </form>
+</body>
+</html>
