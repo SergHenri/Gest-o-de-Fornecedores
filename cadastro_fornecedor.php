@@ -128,9 +128,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $pdo->commit();
         echo "Dados inseridos com sucesso!";
+        
+        echo '<div style="margin-top: 20px;">
+        <a href="PageOne.html">
+            <button style="padding: 10px 20px; margin-right: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Voltar à Página Inicial
+            </button>
+        </a>
+        <a href="CadastroFornecedor.html">
+            <button style="padding: 10px 20px; background-color: #008CBA; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Cadastrar Novo Fornecedor
+            </button>
+        </a>
+    </div>';
     } catch (PDOException $e) {
         $pdo->rollBack();
         echo "Erro ao inserir dados: " . $e->getMessage();
     }
 }
 ?>
+
