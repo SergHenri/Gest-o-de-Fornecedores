@@ -32,13 +32,16 @@ function verificarOuCriarTabela($pdo, $sql) {
 // SQL de criação da tabela FORNECEDOR
 $criarTabelaFornecedor = "CREATE TABLE IF NOT EXISTS FORNECEDOR (
     ID INT PRIMARY KEY AUTO_INCREMENT,
+    USUARIO VARCHAR(10) NOT NULL,
     NOME VARCHAR(255) NOT NULL,
-    CNPJ VARCHAR(18) UNIQUE NOT NULL
+    CNPJ VARCHAR(18) UNIQUE NOT NULL,
+    EMAIL VARCHAR(100) NOT NULL
 )";
 
 // SQL de criação da tabela SERVIÇOS (com chave estrangeira para FORNECEDOR)
 $criarTabelaServicos = "CREATE TABLE IF NOT EXISTS SERVICOS (
     ID INT PRIMARY KEY AUTO_INCREMENT,
+    USUARIO VARCHAR(10) NOT NULL,
     FK_IDFORNECEDOR INT NOT NULL,
     SERVICO VARCHAR(255) NOT NULL,
     DESCRICAO TEXT,
@@ -48,6 +51,7 @@ $criarTabelaServicos = "CREATE TABLE IF NOT EXISTS SERVICOS (
 // SQL de criação da tabela ENDEREÇO (com chave estrangeira para FORNECEDOR)
 $criarTabelaEndereco = "CREATE TABLE IF NOT EXISTS ENDERECO (
     ID INT PRIMARY KEY AUTO_INCREMENT,
+    USUARIO VARCHAR(10) NOT NULL,
     FK_IDFORNECEDOR INT NOT NULL,
     LOGRADOURO VARCHAR(255) NOT NULL,
     NUMERO VARCHAR(10) NOT NULL,
@@ -62,6 +66,7 @@ $criarTabelaEndereco = "CREATE TABLE IF NOT EXISTS ENDERECO (
 // SQL de criação da tabela TELEFONE (com chave estrangeira para FORNECEDOR)
 $criarTabelaTelefone = "CREATE TABLE IF NOT EXISTS TELEFONE (
     ID INT PRIMARY KEY AUTO_INCREMENT,
+    USUARIO VARCHAR(10) NOT NULL,
     FK_IDFORNECEDOR INT NOT NULL,
     PRINCIPAL VARCHAR(20),
     TELEFONE VARCHAR(20),
@@ -72,6 +77,7 @@ $criarTabelaTelefone = "CREATE TABLE IF NOT EXISTS TELEFONE (
 // SQL de criação da tabela CONTRATOS (com chaves estrangeiras para FORNECEDOR e SERVIÇOS)
 $criarTabelaContratos = "CREATE TABLE IF NOT EXISTS CONTRATOS (
     ID INT PRIMARY KEY AUTO_INCREMENT,
+    USUARIO VARCHAR(10) NOT NULL,
     FK_IDFORNECEDOR INT NOT NULL,
     FK_IDSERVICOS INT NOT NULL,
     DATA_INICIAL DATE NOT NULL,
@@ -83,6 +89,7 @@ $criarTabelaContratos = "CREATE TABLE IF NOT EXISTS CONTRATOS (
 // SQL de criação da tabela CLIENTES_FORNECEDOR (relaciona clientes a fornecedores e serviços)
 $criarTabelaClienteForcedor = "CREATE TABLE IF NOT EXISTS CLIENTES_FORNECEDOR (
     ID INT PRIMARY KEY AUTO_INCREMENT,
+    USUARIO VARCHAR(10) NOT NULL,
     FK_IDFORNECEDOR INT NOT NULL,
     SERVICO VARCHAR(255),
     CLIENTE VARCHAR(255),
@@ -103,17 +110,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Inicia uma transação para garantir que todas as inserções sejam feitas com sucesso
         $pdo->beginTransaction();
 
+        $usuario = $_POST['user'];
+
         // Insere os dados do fornecedor na tabela FORNECEDOR
-        $stmt = $pdo->prepare("INSERT INTO FORNECEDOR (NOME, CNPJ) VALUES (:nome, :cnpj)");
+        $stmt = $pdo->prepare("INSERT INTO FORNECEDOR (NOME, CNPJ, USUARIO, EMAIL) VALUES (:nome, :cnpj, :user, :email)");
         $stmt->execute([
             'nome' => $_POST['nome'],
-            'cnpj' => $_POST['cnpj']
+            'cnpj' => $_POST['cnpj'],
+            'user' => $usuario,
+            'email' => $_POST['email']
         ]);
         $fornecedorId = $pdo->lastInsertId(); // Recupera o ID do fornecedor recém-inserido
 
         // Insere os dados do serviço relacionado ao fornecedor
-        $stmt = $pdo->prepare("INSERT INTO SERVICOS (FK_IDFORNECEDOR, SERVICO, DESCRICAO) VALUES (:fk_idfornecedor, :servico, :descricao)");
+        $stmt = $pdo->prepare("INSERT INTO SERVICOS (USUARIO, FK_IDFORNECEDOR, SERVICO, DESCRICAO) VALUES (:user, :fk_idfornecedor, :servico, :descricao)");
         $stmt->execute([
+            'user' => $usuario,
             'fk_idfornecedor' => $fornecedorId,
             'servico' => $_POST['servico'],
             'descricao' => $_POST['descricao']
@@ -121,9 +133,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $servicoId = $pdo->lastInsertId(); // Recupera o ID do serviço
 
         // Insere os dados de endereço do fornecedor
-        $stmt = $pdo->prepare("INSERT INTO ENDERECO (FK_IDFORNECEDOR, LOGRADOURO, NUMERO, COMPLEMENTO, CEP, BAIRRO, CIDADE, UF)
-                               VALUES (:fk_idfornecedor, :logradouro, :numero, :complemento, :cep, :bairro, :cidade, :uf)");
+        $stmt = $pdo->prepare("INSERT INTO ENDERECO (USUARIO, FK_IDFORNECEDOR, LOGRADOURO, NUMERO, COMPLEMENTO, CEP, BAIRRO, CIDADE, UF)
+                               VALUES (:user, :fk_idfornecedor, :logradouro, :numero, :complemento, :cep, :bairro, :cidade, :uf)");
         $stmt->execute([
+            'user' => $usuario,
             'fk_idfornecedor' => $fornecedorId,
             'logradouro' => $_POST['logradouro'],
             'numero' => $_POST['numero'],
@@ -135,9 +148,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
 
         // Insere os dados de telefone
-        $stmt = $pdo->prepare("INSERT INTO TELEFONE (FK_IDFORNECEDOR, PRINCIPAL, TELEFONE, CELULAR) 
-                               VALUES (:fk_idfornecedor, :principal, :telefone, :celular)");
+        $stmt = $pdo->prepare("INSERT INTO TELEFONE (USUARIO, FK_IDFORNECEDOR, PRINCIPAL, TELEFONE, CELULAR) 
+                               VALUES (:user, :fk_idfornecedor, :principal, :telefone, :celular)");
         $stmt->execute([
+            'user' => $usuario,
             'fk_idfornecedor' => $fornecedorId,
             'principal' => $_POST['principal'],
             'telefone' => $_POST['telefone'],
@@ -145,9 +159,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
 
         // Insere os dados do contrato com datas
-        $stmt = $pdo->prepare("INSERT INTO CONTRATOS (FK_IDFORNECEDOR, FK_IDSERVICOS, DATA_INICIAL, DATA_FINAL)
-                               VALUES (:fk_idfornecedor, :fk_idservicos, :data_inicial, :data_final)");
+        $stmt = $pdo->prepare("INSERT INTO CONTRATOS (USUARIO, FK_IDFORNECEDOR, FK_IDSERVICOS, DATA_INICIAL, DATA_FINAL)
+                               VALUES (:user, :fk_idfornecedor, :fk_idservicos, :data_inicial, :data_final)");
         $stmt->execute([
+            'user' => $usuario,
             'fk_idfornecedor' => $fornecedorId,
             'fk_idservicos' => $servicoId,
             'data_inicial' => $_POST['data_inicial'],
@@ -155,9 +170,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
 
         // Insere os dados do cliente vinculado ao fornecedor
-        $stmt = $pdo->prepare("INSERT INTO CLIENTES_FORNECEDOR (FK_IDFORNECEDOR, SERVICO, CLIENTE) 
-                               VALUES (:fk_idfornecedor, :servico, :cliente)");
+        $stmt = $pdo->prepare("INSERT INTO CLIENTES_FORNECEDOR (USUARIO, FK_IDFORNECEDOR, SERVICO, CLIENTE) 
+                               VALUES (:user, :fk_idfornecedor, :servico, :cliente)");
         $stmt->execute([
+            'user' => $usuario,
             'fk_idfornecedor' => $fornecedorId,
             'servico' => $_POST['servico'],
             'cliente' => $_POST['cliente']
