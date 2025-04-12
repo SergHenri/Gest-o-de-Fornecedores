@@ -3,7 +3,7 @@ session_start();
 
 // Dados de conexão com o banco
 define("HOST", "localhost");
-define("DBNAME", "sistema"); // Ou "sistema", escolha o nome correto
+define("DBNAME", "UsuariosSistema"); // Ou "sistema", escolha o nome correto
 define("USER", "root");
 define("PASS", "root");
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $tipo_usuario = $_POST['tipo_usuario'];
 
     // Consulta SQL com tipo de usuário incluso
-    $sql = "SELECT * FROM usuarios WHERE usuario = :usuario AND senha = :senha AND tipo = :tipo";
+    $sql = "SELECT * FROM users WHERE USUARIO = :usuario AND SENHA = :senha AND TIPO = :tipo";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':usuario', $usuario);
     $stmt->bindParam(':senha', $senha);
@@ -34,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Salva informações do usuário na sessão
-        $_SESSION['usuario'] = $dados['usuario'];
-        $_SESSION['tipo'] = $dados['tipo'];
+        $_SESSION['usuario'] = $dados['USUARIO'];
+        $_SESSION['tipo'] = $dados['TIPO'];
 
         // Redireciona com base no tipo de usuário
-        if ($dados['tipo'] == 'admin') {
+        if ($dados['TIPO'] == 'admin') {
             header("Location: PageOne.html"); // Página do administrador
         } else {
             header("Location: visualizar.php"); // Página para usuário comum

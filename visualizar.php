@@ -63,7 +63,7 @@ $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
 
     <h3>Serviços</h3>
     <table border="3">
-        <tr><th>ID</th><th>USUARIO</th><th>FK_IDCONTRATOS</th><th>SERVICO</th><th>DESCRICAO</th></tr>
+        <tr><th>ID</th><th>USUARIO</th><th>SERVICO</th><th>DESCRICAO</th></tr>
         <?php foreach ($servicos as $s): ?>
         <tr>
             <td><?= $s['ID'] ?></td>

@@ -1,0 +1,25 @@
+<!DOCTYPE html> <!-- Define que o documento segue o padrão HTML5 -->
+<html lang="pt-br"> <!-- Define que o idioma da página é português do Brasil -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante responsividade em dispositivos móveis -->
+    <title>Reset de Senha</title> <!-- Título exibido na aba do navegador -->
+</head>
+
+<body>
+    <h2>Realizar reset de senha</h2> <!-- Título principal exibido na página -->
+
+    <!-- Formulário para exclusão de um registro no banco de dados -->
+    <!-- Os dados serão enviados via método POST para o script 'delete.php' -->
+    <form action="reset_senha.php" method="POST">
+        <label for="usuario">Usuário:</label>
+        <input type="text" name="usuario" id="usuario" required>
+        
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email" required>
+        
+        <button type="submit">Solicitar Reset de Senha</button>
+    </form>
+</body>
+</html>

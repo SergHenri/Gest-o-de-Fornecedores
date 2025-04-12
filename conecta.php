@@ -18,15 +18,6 @@ try {
     $pdo = new PDO("mysql:host=localhost;dbname=$dbName", USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Cria a tabela FORNECEDOR se ela ainda não existir
-    $query = "CREATE TABLE IF NOT EXISTS FORNECEDOR (
-        ID INT PRIMARY KEY AUTO_INCREMENT,   -- ID numérico único e autoincrementável
-        NOME VARCHAR(255) NOT NULL,          -- Nome do fornecedor, obrigatório
-        CNPJ VARCHAR(18) UNIQUE NOT NULL     -- CNPJ único e obrigatório
-    )";
-    // Executa a criação da tabela
-    $pdo->exec($query);
-
 } catch (PDOException $e) {
     // Caso ocorra algum erro de conexão ou execução, exibe a mensagem
     die("ERRO: " . $e->getMessage());

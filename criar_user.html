@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criação de Usuários</title>
+</head>
+<body>
+
+    <h2>Criação de Usuários</h2>
+    
+    <nav>
+        <a href="PageOne.html">Inicial</a>
+        <a href="index.php">Fornecedores</a>
+    </nav>
+
+    <br>
+
+    <!-- Formulário de cadastro -->
+    <form method="post" action="criar_user.php">
+        <div class="">
+            
+            <label for="criarUser">Usuário:</label>
+            <input type="text" id="criarUser" name="criarUser" required placeholder="Informe o usuário"><br><br>
+            
+            <label for="InfoSenha">Senha:</label>
+            <input type="password" id="InfoSenha" name="InfoSenha" required placeholder="Informe a senha"><br><br>
+    
+            <label for="tipoUsuario">Tipo de Usuario:</label>
+            <select id="tipoUsuario" name="tipoUsuario" required>
+                <option value="" disabled selected>Selecione o tipo de usuario</option>
+                <option value="admin">admin</option>
+                <option value="usuario">usuario</option>
+            </select><br><br>
+    
+            <input type="submit" value="Criar Usuário">
+        </div>
+    </form>
+
+</body>
+</html>

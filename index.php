@@ -21,6 +21,7 @@
     <a href="PageOne.html">Inicial</a> <!-- Link para página inicial -->
     <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a> <!-- Link para cadastro de fornecedores -->
     <a href="update.html">Editar</a> <!-- Link para edição de dados -->
+    <a href="delete.html">Deletar</a> <!-- Link para edição de dados -->
 </nav>
 
 <?php

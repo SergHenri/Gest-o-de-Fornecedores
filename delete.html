@@ -1,0 +1,46 @@
+<!DOCTYPE html> <!-- Define que o documento segue o padrão HTML5 -->
+<html lang="pt-br"> <!-- Define que o idioma da página é português do Brasil -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante responsividade em dispositivos móveis -->
+    <title>Atualizar ou Deletar Registro</title> <!-- Título exibido na aba do navegador -->
+</head>
+
+<body>
+    <h2>Atualizar ou Deletar Registro</h2> <!-- Título principal exibido na página -->
+
+    <!-- Área de navegação com links para outras páginas do sistema -->
+    <nav>
+        <a href="PageOne.html">Inicial</a> <!-- Link que leva para a página inicial -->
+        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a> <!-- Link que leva para a página de cadastro -->
+        <a href="update.html">Editar</a> <!-- Link que leva para a página de edição de registros -->
+    </nav>
+
+    <br><br> <!-- Quebra de linha dupla para espaçamento -->
+
+    <!-- Formulário para exclusão de um registro no banco de dados -->
+    <!-- Os dados serão enviados via método POST para o script 'delete.php' -->
+    <form action="delete.php" method="POST">
+
+        <!-- Campo para o nome da tabela onde será feita a exclusão -->
+        <label for="tabela">Nome da Tabela:</label>
+        <input type="text" name="tabela" required> <!-- Campo obrigatório -->
+        <br><br>
+
+        <!-- Campo para o nome da coluna usada na condição do WHERE -->
+        <label for="coluna_deletar">Nome da Coluna para deletar:</label>
+        <input type="text" name="coluna_deletar"> <!-- Campo opcional, mas importante para deletar um item específico -->
+        <br><br>
+
+        <!-- Campo para o valor que será usado como filtro (exemplo: excluir onde id = 3) -->
+        <label for="valor_delete">Valor da Coluna Filtrada:</label>
+        <input type="text" name="valor_delete" required> <!-- Campo obrigatório -->
+        <br><br>
+
+        <!-- Botão que envia o formulário e executa a ação de deletar -->
+        <!-- O valor "deletar" será usado no PHP para identificar a ação -->
+        <button type="submit" name="acao" value="deletar">Excluir</button>
+    </form>
+</body>
+</html>
