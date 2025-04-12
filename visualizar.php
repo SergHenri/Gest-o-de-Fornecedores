@@ -18,7 +18,11 @@ try {
 
 // Função para buscar dados filtrando pelo usuário
 function buscarDados($pdo, $tabela, $usuarioLogado) {
-    $stmt = $pdo->prepare("SELECT * FROM $tabela WHERE USUARIO = :usuario");
+    if ($tabela == 'contratos') {
+        $stmt = $pdo->prepare("SELECT * FROM $tabela WHERE USUARIO = :usuario");
+    } else {
+        $stmt = $pdo->prepare("SELECT * FROM $tabela WHERE FK_IDCONTRATOS = :usuario");
+    }
     $stmt->bindParam(':usuario', $usuarioLogado);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +32,6 @@ function buscarDados($pdo, $tabela, $usuarioLogado) {
 $clientes = buscarDados($pdo, "clientes_fornecedor", $usuarioLogado);
 $contratos = buscarDados($pdo, "contratos", $usuarioLogado);
 $endereco = buscarDados($pdo, "endereco", $usuarioLogado);
-$fornecedor = buscarDados($pdo, "fornecedor", $usuarioLogado);
 $servicos = buscarDados($pdo, "servicos", $usuarioLogado);
 $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
 ?>
@@ -42,42 +45,42 @@ $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
 <body>
     <h2>Bem-vindo, <?= htmlspecialchars($usuarioLogado) ?></h2>
 
-    <h3>Clientes Fornecedor</h3>
-    <table border="3">
-        <tr><th>ID</th><th>USUARIO</th><th>FK_IDFORNECEDOR</th><th>SERVICO</th><th>CLIENTE</th></tr>
-        <?php foreach ($clientes as $c): ?>
-        <tr>
-            <td><?= $c['ID'] ?></td>
-            <td><?= $c['USUARIO'] ?></td>
-            <td><?= $c['FK_IDFORNECEDOR'] ?></td>
-            <td><?= $c['SERVICO'] ?></td>
-            <td><?= $c['CLIENTE'] ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-
     <h3>Contratos</h3>
     <table border="3">
-        <tr><th>ID</th><th>USUARIO</th><th>FK_IDFORNECEDOR</th><th>FK_IDSERVICOS</th><th>DATA_INICIAL</th><th>DATA_FINAL</th></tr>
+        <tr><th>ID</th><th>USUARIO</th><th>NOME</th><th>CNPJ</th><th>EMAIL</th><th>DATA_INICIAL</th><th>DATA_FINAL</th>
         <?php foreach ($contratos as $c): ?>
         <tr>
             <td><?= $c['ID'] ?></td>
             <td><?= $c['USUARIO'] ?></td>
-            <td><?= $c['FK_IDFORNECEDOR'] ?></td>
-            <td><?= $c['FK_IDSERVICOS'] ?></td>
+            <td><?= $c['NOME'] ?></td>
+            <td><?= $c['CNPJ'] ?></td>
+            <td><?= $c['EMAIL'] ?></td>
             <td><?= $c['DATA_INICIAL'] ?></td>
             <td><?= $c['DATA_FINAL'] ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
 
+    <h3>Serviços</h3>
+    <table border="3">
+        <tr><th>ID</th><th>USUARIO</th><th>FK_IDCONTRATOS</th><th>SERVICO</th><th>DESCRICAO</th></tr>
+        <?php foreach ($servicos as $s): ?>
+        <tr>
+            <td><?= $s['ID'] ?></td>
+            <td><?= $s['FK_IDCONTRATOS'] ?></td>
+            <td><?= $s['SERVICO'] ?></td>
+            <td><?= $s['DESCRICAO'] ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
     <h3>Endereço</h3>
     <table border="3">
-        <tr><th>ID</th><th>USUARIO</th><th>LOGRADOURO</th><th>NÚMERO</th><th>COMPLEMENTO</th><th>CEP</th><th>BAIRRO</th><th>CIDADE</th><th>UF</th></tr>
+        <tr><th>ID</th><th>FK_IDCONTRATOS</th><th>LOGRADOURO</th><th>NÚMERO</th><th>COMPLEMENTO</th><th>CEP</th><th>BAIRRO</th><th>CIDADE</th><th>UF</th></tr>
         <?php foreach ($endereco as $e): ?>
         <tr>
             <td><?= $e['ID'] ?></td>
-            <td><?= $e['USUARIO'] ?></td>
+            <td><?= $e['FK_IDCONTRATOS'] ?></td> <!-- Aqui foi alterado para FK_IDCONTRATOS -->
             <td><?= $e['LOGRADOURO'] ?></td>
             <td><?= $e['NUMERO'] ?></td>
             <td><?= $e['COMPLEMENTO'] ?></td>
@@ -89,48 +92,33 @@ $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
         <?php endforeach; ?>
     </table>
 
-    <h3>Fornecedor</h3>
-    <table border="3">
-        <tr><th>ID</th><th>USUARIO</th><th>NOME</th><th>CNPJ</th><th>EMAIL</th></tr>
-        <?php foreach ($fornecedor as $f): ?>
-        <tr>
-            <td><?= $f['ID'] ?></td>
-            <td><?= $f['USUARIO'] ?></td>
-            <td><?= $f['NOME'] ?></td>
-            <td><?= $f['CNPJ'] ?></td>
-            <td><?= $f['EMAIL'] ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <h3>Serviços</h3>
-    <table border="3">
-        <tr><th>ID</th><th>USUARIO</th><th>FK_IDFORNECEDOR</th><th>SERVICO</th><th>DESCRICAO</th></tr>
-        <?php foreach ($servicos as $s): ?>
-        <tr>
-            <td><?= $s['ID'] ?></td>
-            <td><?= $s['USUARIO'] ?></td>
-            <td><?= $s['FK_IDFORNECEDOR'] ?></td>
-            <td><?= $s['SERVICO'] ?></td>
-            <td><?= $s['DESCRICAO'] ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-
     <h3>Telefone</h3>
     <table border="3">
-        <tr><th>ID</th><th>USUARIO</th><th>FK_IDFORNECEDOR</th><th>PRINCIPAL</th><th>TELEFONE</th><th>CELULAR</th></tr>
+        <tr><th>ID</th><th>FK_IDCONTRATOS</th><th>PRINCIPAL</th><th>TELEFONE</th><th>CELULAR</th>
         <?php foreach ($telefone as $t): ?>
         <tr>
             <td><?= $t['ID'] ?></td>
-            <td><?= $t['USUARIO'] ?></td>
-            <td><?= $t['FK_IDFORNECEDOR'] ?></td>
+            <td><?= $t['FK_IDCONTRATOS'] ?></td> <!-- Aqui foi alterado para FK_IDCONTRATOS -->
             <td><?= $t['PRINCIPAL'] ?></td>
             <td><?= $t['TELEFONE'] ?></td>
             <td><?= $t['CELULAR'] ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
+
+    <h3>Clientes Fornecedor</h3>
+    <table border="3">
+        <tr><th>ID</th><th>FK_IDCONTRATOS</th><th>SERVICO</th><th>CLIENTE</th>
+        <?php foreach ($clientes as $c): ?>
+        <tr>
+            <td><?= $c['ID'] ?></td>
+            <td><?= $c['FK_IDCONTRATOS'] ?></td> <!-- Aqui foi alterado para FK_IDCONTRATOS -->
+            <td><?= $c['SERVICO'] ?></td>
+            <td><?= $c['CLIENTE'] ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
 
     <br> <!-- Quebra de linha -->
     <br> <!-- Outra quebra de linha -->
