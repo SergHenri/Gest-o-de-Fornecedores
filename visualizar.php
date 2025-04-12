@@ -41,6 +41,11 @@ $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
 <head>
     <meta charset="UTF-8">
     <title>Dados do Usuário</title>
+
+    <style>
+        {CSS}
+    </style>
+
 </head>
 <body>
     <h2>Bem-vindo, <?= htmlspecialchars($usuarioLogado) ?></h2>
@@ -76,7 +81,7 @@ $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
 
     <h3>Endereço</h3>
     <table border="3">
-        <tr><th>ID</th><th>FK_IDCONTRATOS</th><th>LOGRADOURO</th><th>NÚMERO</th><th>COMPLEMENTO</th><th>CEP</th><th>BAIRRO</th><th>CIDADE</th><th>UF</th></tr>
+        <tr><th>ID</th><th>USUARIO</th><th>LOGRADOURO</th><th>NÚMERO</th><th>COMPLEMENTO</th><th>CEP</th><th>BAIRRO</th><th>CIDADE</th><th>UF</th></tr>
         <?php foreach ($endereco as $e): ?>
         <tr>
             <td><?= $e['ID'] ?></td>
@@ -94,7 +99,7 @@ $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
 
     <h3>Telefone</h3>
     <table border="3">
-        <tr><th>ID</th><th>FK_IDCONTRATOS</th><th>PRINCIPAL</th><th>TELEFONE</th><th>CELULAR</th>
+        <tr><th>ID</th><th>USUARIO</th><th>PRINCIPAL</th><th>TELEFONE</th><th>CELULAR</th>
         <?php foreach ($telefone as $t): ?>
         <tr>
             <td><?= $t['ID'] ?></td>
@@ -108,7 +113,7 @@ $telefone = buscarDados($pdo, "telefone", $usuarioLogado);
 
     <h3>Clientes Fornecedor</h3>
     <table border="3">
-        <tr><th>ID</th><th>FK_IDCONTRATOS</th><th>SERVICO</th><th>CLIENTE</th>
+        <tr><th>ID</th><th>USUARIO</th><th>SERVICO</th><th>CLIENTE</th>
         <?php foreach ($clientes as $c): ?>
         <tr>
             <td><?= $c['ID'] ?></td>
