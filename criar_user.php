@@ -36,16 +36,45 @@ $stmt->bindParam(':usuario', $usuario);
 $stmt->execute();
 
 if ($stmt->rowCount() > 0) {
-    echo 'Usuário já existe!<br><br>';
+    echo  '<div style="text-align: center; margin-top: 20px;">
+    <h3 style="color: red;">❌ Erro ao cadastrar usuário</h3> 
+    <strong>Usuário já existe!</strong><br><br> 
+    </div>';
 
-    echo '<div>
-        <a href="PageOne.html">
-            <button>Voltar à Página Inicial</button>
-        </a>
+    echo '<div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+    <a href="PageOne.html" style="text-decoration: none;">
+        <button style="
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        " 
+        onmouseover="this.style.background=\'#1565c0\'" 
+        onmouseout="this.style.background=\'#1976d2\'">
+            Voltar à Página Inicial
+        </button>
+    </a>
 
-        <a href="criar_user.html">
-            <button>Criar Usuario</button>
-        </a>
+    <a href="criar_user.html" style="text-decoration: none;">
+        <button style="
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        " 
+        onmouseover="this.style.background=\'#1565c0\'" 
+        onmouseout="this.style.background=\'#1976d2\'">
+            Criar Usuario
+        </button>
+    </a>
     </div>';
     
     exit;
@@ -58,20 +87,49 @@ $insert->bindParam(':senha', $senha);
 $insert->bindParam(':tipo', $tipo);
 
 if ($insert->execute()) {
-    echo '<h3>✅ Usuário cadastrado com sucesso!</h3>';
+    echo '<h3 style="text-align: center; margin-top: 20px;
+    font-family: Arial, sans-serif;
+    "> Usuário cadastrado com sucesso!</h3>';
 } else {
-    echo '<h3>❌ Erro ao cadastrar usuário.</h3>';
+    echo '<h3 style="text-align: center; margin-top: 20px;"> Erro ao cadastrar usuário.</h3>';
 }
 
 // Botões
-echo '<div>
-    <a href="PageOne.html">
-        <button>Voltar à Página Inicial</button>
+echo '<div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+    <a href="PageOne.html" style="text-decoration: none;">
+            <button style="
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        " 
+        onmouseover="this.style.background=\'#1565c0\'" 
+        onmouseout="this.style.background=\'#1976d2\'">
+            Voltar à Página Inicial</button>
     </a>
 
-    <a href="CadastroFornecedor.html">
-        <button>Cadastrar Novo Fornecedor</button>
+    <a href="CadastroFornecedor.html" style="text-decoration: none;">
+        <button style="text-decoration: none;">
+            <button style="
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        " 
+        onmouseover="this.style.background=\'#1565c0\'" 
+        onmouseout="this.style.background=\'#1976d2\'">
+        Cadastrar Novo Fornecedor</button>
     </a>
 </div>';
+
+
 
 ?>

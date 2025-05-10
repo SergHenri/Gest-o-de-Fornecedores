@@ -157,17 +157,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Finaliza a transação com sucesso
         $pdo->commit();
-        echo "Dados inseridos com sucesso!";
+        echo '<h3 style="text-align: center; margin-top: 20px;" > Dados inseridos com sucesso! </h3>';
 
         // Exibe botões de navegação após cadastro
-        echo '<div "PASS">
-        <a href="PageOne.html">
-            <button style="padding: 10px 20px; margin-right: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        echo '<div "PASS" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+        <a href="PageOne.html" style="text-decoration: none;">
+            <button style="
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        " 
+        onmouseover="this.style.background=\'#1565c0\'" 
+        onmouseout="this.style.background=\'#1976d2\'">
                 Voltar à Página Inicial
             </button>
         </a>
-        <a href="CadastroFornecedor.html">
-            <button style="padding: 10px 20px; background-color: #008CBA; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        <a href="CadastroFornecedor.html" style="text-decoration: none;">
+            <button style="
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        " 
+        onmouseover="this.style.background=\'#1565c0\'" 
+        onmouseout="this.style.background=\'#1976d2\'">
                 Cadastrar Novo Fornecedor
             </button>
         </a>
@@ -175,7 +197,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         // Em caso de erro, desfaz a transação e exibe a mensagem
         $pdo->rollBack();
-        echo "Erro ao inserir dados: " . $e->getMessage();
+        echo '<h3 style="text-align: center; margin-top: 20px; font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif;">
+        Erro ao inserir dados: ' . $e->getMessage() . '</h3>';
     }
 }
 ?>
+
+
+<style>l{
+    font-faamily: "Sin"
+}</style>

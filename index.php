@@ -5,24 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade para dispositivos móveis -->
     <title>Visualizar Banco de Dados</title> <!-- Título da aba do navegador -->
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; } /* Estilo do corpo da página */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } /* Estilo das tabelas */
-        th, td { border: 1px solid black; padding: 8px; text-align: left; } /* Estilo das células */
-        th { background-color: #f2f2f2; } /* Cor de fundo do cabeçalho da tabela */
-        input[type="text"], select { margin-bottom: 10px; padding: 5px; width: 100%; max-width: 300px; display: block; } /* Estilo de inputs e selects */
-        nav a, nav button { margin-right: 10px; } /* Espaçamento entre os itens do menu de navegação */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h2, h3 {
+            color: #2c3e50;
+            
+            
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+        select {
+            margin-right: 20px; /* Adiciona 10 pixels de margem à direita do select */
+        }
+
+        nav a {
+            text-decoration: none;
+            color:rgb(255, 255, 255);
+            font-weight: 500;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+            background-color:#3498db;
+            padding: 10px;
+            border-radius: 10px;
+            
+            
+        }
+
+        nav a:hover {
+            color:rgb(255, 255, 255);
+            background-color:rgb(10, 10, 10);
+            padding: 10px;
+            border-radius: 10px;
+            
+            
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"], select {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        label {
+            font-weight: 500;
+            margin-top: 10px;
+            display: block;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        /* Adiciona uma leve animação ao mostrar/esconder linhas */
+        tr {
+            transition: all 0.2s ease-in-out;
+        }
+
     </style>
 </head>
 <body>
 
-<h2>Tabelas no Banco de Dados</h2> <!-- Título principal da página -->
+<h2 style="text-align: center;">Tabelas no Banco de Dados</h2> <!-- Título principal da página -->
 
-<nav>
+
+<nav style="text-align: center;">
     <a href="PageOne.html">Inicial</a> <!-- Link para página inicial -->
     <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a> <!-- Link para cadastro de fornecedores -->
     <a href="update.html">Editar</a> <!-- Link para edição de dados -->
     <a href="delete.html">Deletar</a> <!-- Link para edição de dados -->
 </nav>
+<br>
 
 <?php
 // Definição de constantes para conexão com o banco de dados

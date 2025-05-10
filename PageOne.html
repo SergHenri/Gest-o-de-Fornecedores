@@ -3,16 +3,118 @@
 
 <head>
     <title> Gestão de Fornecedores</title> <!-- Título da aba do navegador -->
+    <style>
+            body {
+        background: #f4f7f9;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            /* Cabeçalho */
+            header {
+                text-align: center;
+                padding: 30px 20px;
+                background: linear-gradient(135deg, #4e54c8, #8f94fb);
+                color: #fff;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            /* Seção principal */
+            section {
+                max-width: 800px;
+                margin: 0 auto 30px auto;
+                background: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            }
+
+            article h3 {
+                color: #4e54c8;
+                margin-bottom: 15px;
+            }
+
+            article p {
+                margin-bottom: 15px;
+                text-align: justify;
+            }
+
+            /* Navegação */
+            nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin: 20px 0;
+            }
+
+            nav a {
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 20px;
+                background: #4e54c8;
+                color: white;
+                transition: background 0.3s, transform 0.2s;
+            }
+
+            nav a:hover {
+                background: #000000;
+                transform: translateY(-2px);
+            }
+
+            /* Botão de logout */
+            button {
+                padding: 10px 20px;
+                background-color: #4e54c8;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+
+            }
+            
+            button:hover {
+            background-color: #000000;
+            }
+
+            /* Responsivo */
+            @media (max-width: 600px) {
+                header h1 {
+                    font-size: 1.4rem;
+                }
+
+                article h3 {
+                    font-size: 1.2rem;
+                }
+            }
+    </style>
 </head>
 
 <body> <!-- Início do corpo da página -->
 
-    <header class=""> <!-- Cabeçalho da página (classe vazia) -->
+    <header> <!-- Cabeçalho da página (classe vazia) -->
         <h1>Bem-vindo à Sua Plataforma de Gestão de Fornecedores</h1> <!-- Título principal da página -->
     </header>
 
-    <section class=""> <!-- Seção principal da página (classe vazia) -->
-        <article class=""> <!-- Artigo ou bloco de conteúdo (classe vazia) -->
+    <nav> <!-- Menu de navegação (classe vazia) -->
+        <a href="criar_user.html">Criar Usuarios</a> <!-- Link para página criação user -->
+        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a> <!-- Link para página de cadastro -->
+        <a href="index.php">Fornecedores</a> <!-- Link para página de listagem/consulta de fornecedores -->
+    </nav>
+
+
+    <section> <!-- Seção principal da página (classe vazia) -->
+        <article> <!-- Artigo ou bloco de conteúdo (classe vazia) -->
             <h3>Sobre Nós</h3> <!-- Título do artigo -->
 
             <p>
@@ -20,7 +122,7 @@
             </p> <!-- Parágrafo explicativo com destaque em negrito -->
 
             <p>
-                Nosso objetivo é oferecer <strong>agilidade, segurança e organização</strong> aos processos de contratação, avaliação e relacionamento com parceiros comerciais, ajudando empresas a tomarem decisões mais assertivas e estratégicas.
+                Nosso objetivo é oferecer <strong>agilidade, segurança e organização</strong> aos processos de contratação, avaliação e relacionamento com parceiros comerciais, ajudando a empresa a tomarem decisões mais assertivas e estratégicas.
             </p> <!-- Outro parágrafo explicativo com negrito -->
 
             <p>
@@ -28,23 +130,18 @@
             </p> <!-- Parágrafo sobre o público-alvo e benefícios -->
 
             <p>
-                Estamos comprometidos com a <strong>inovação e melhoria contínua</strong>, sempre ouvindo nossos clientes para entregar soluções que realmente façam a diferença no dia a dia da operação.
+                Estamos comprometidos com a <strong>inovação e melhoria contínua</strong>, sempre ouvindo nossos clientes e fornecedores para entregar soluções que realmente façam a diferença no dia a dia da operação.
             </p> <!-- Parágrafo sobre os valores da empresa -->
         </article>
     </section>
 
-    <nav class=""> <!-- Menu de navegação (classe vazia) -->
-        <a href="criar_user.html">Criar Usuarios</a> <!-- Link para página criação user -->
-        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a> <!-- Link para página de cadastro -->
-        <a href="index.php">Fornecedores</a> <!-- Link para página de listagem/consulta de fornecedores -->
-    </nav>
 
     <br> <!-- Quebra de linha -->
     <br> <!-- Outra quebra de linha -->
 
-    <nav class=""> <!-- Menu de navegação (classe vazia) -->
-        <a href="logout.php"> <!-- Link para o logout -->
-            <button>
+    <nav class="deslogar"> <!-- Menu de navegação (classe vazia) -->
+        <a href="logout.php" class="deslogar_a"> <!-- Link para o logout -->
+            <button class="deslogar-btn">
                 Logout
             </button> <!-- Botão para sair do sistema -->
         </a>

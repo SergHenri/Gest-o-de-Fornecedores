@@ -1,38 +1,131 @@
-<!DOCTYPE html> <!-- Declara o tipo de documento como HTML5 -->
-<html lang="pt-br"> <!-- Início do documento HTML com idioma definido como português do Brasil -->
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres como UTF-8 -->
-    <title>Login</title> <!-- Título da página que aparece na aba do navegador -->
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        main {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        form {
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        label {
+            align-self: flex-start;
+            font-size: 14px;
+            color: #555;
+        }
+
+        select, input {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #000000;
+        }
+
+        .form-group {
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
-<body> <!-- Início do corpo da página -->
+<body>
 
-<div class=""> <!-- Div para agrupar o conteúdo do formulário (classe vazia) -->
-    <h2>Login</h2> <!-- Título do formulário -->
+<main>
+    <div>
+        <img src="img/gestao-de-fornecedores-de-ti.jpg" alt="Imagem representando gestão de fornecedores">
+    </div>
 
-    <form action="login.php" method="POST"> <!-- Início do formulário que envia os dados via POST para login.php -->
+    <div class="login-form">
+        <h2>Seja bem-vindo</h2>
 
-        <label for="tipo_usuario">Tipo de Usuário:</label> <!-- Rótulo para o seletor de tipo de usuário -->
-        <select name="tipo_usuario" id="tipo_usuario" required> <!-- Menu suspenso para escolher o tipo de usuário (obrigatório) -->
-            <option value="selecione">Selecione um opção</option> <!-- Opção padrão para solicitar seleção -->
-            <option value="usuario">Usuário</option> <!-- Opção para usuário comum -->
-            <option value="admin">Administrador</option> <!-- Opção para administrador -->
-        </select>
+        <form action="login.php" method="POST">
+            <div class="form-group">
+                <label for="tipo_usuario">Tipo de Usuário:</label><br>
+                <select name="tipo_usuario" id="tipo_usuario" required>
+                    <option value="selecione">Selecione um opção</option>
+                    <option value="usuario">Fornecedor</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
 
-        <input type="text" name="usuario" placeholder="Usuário" required> <!-- Campo de entrada para o nome de usuário (obrigatório) -->
-        <input type="password" name="senha" placeholder="Senha" required> <!-- Campo de entrada para a senha (obrigatório) -->
+            <div class="form-group">
+                <input type="text" name="usuario" placeholder="Usuário" required>
+            </div>
 
-        <button type="submit">Entrar</button> <!-- Botão para enviar o formulário -->
-    </form>
-</div>
-<!-- <br>
-<br>
-<nav class="">
-    <button>
-        
-        <a href="reset.html">Reset de senha</a>
+            <div class="form-group">
+                <input type="password" name="senha" placeholder="Senha" required>
+            </div>
 
-    </button>
-</nav> -->
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</main>
 
 </body>
-</html> <!-- Fim do documento HTML -->
+</html>

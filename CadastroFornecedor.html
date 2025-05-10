@@ -2,17 +2,161 @@
 <html>
 <head>
     <title>Cadastro do Fornecedor</title> <!-- Título da página -->
+
+    <style>
+        body {
+            margin: 0;
+            padding: 50px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ece9e6, #ffffff);
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 42px;
+            font-weight: 700;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: #3498db;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #2c3e50;
+            color: #fff;
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        fieldset {
+            border: 2px solid #3498db;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            background: #f9f9f9;
+            transition: 0.3s;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #3498db;
+            padding: 0 15px;
+            font-size: 1.2em;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 96%;
+            padding: 12px 15px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            outline: none;
+        }
+
+        button[type="button"] {
+            display: block;
+            width: 100%;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        button[type="button"]:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2c3e50;
+        }
+
+        input[type="submit"]:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        p {
+            margin: 12px 0 20px;
+            font-size: 15px;
+            color: #555;
+        }
+
+    </style>
+
+
+
 </head>
 <body>
 
-    <h2>CADASTRO DE FORNECEDOR</h2> <!-- Título principal na página -->
+    <h2>Cadastro de fornecedor</h2> <!-- Título principal na página -->
     
-    <nav class="">
+    <nav>
         <!-- Menu de navegação -->
-        <a href="PageOne.html">Inicial</a>
+        <a href="PageOne.html">Tela Inicial</a>
         <a href="index.php">Fornecedores</a>
-        <a href="update.html">Editar</a>
-        <a href="delete.html">Exclusão</a>
+
     </nav>
 
     <!-- Início do formulário de cadastro de fornecedor -->
@@ -20,169 +164,180 @@
         <!-- Botão para ocultar/exibir o bloco "fornecedor" -->
         <button type="button" onclick="ocultarBloco('fornecedor')"></button><br><br>
         
-        <div id="fornecedor">
-            <!-- Campo de nome da empresa -->
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome" required placeholder="Digite o nome da empresa"><br><br>
+        <section>
+            <fieldset>
+                <legend>Fornecedor</legend> <!-- Título do campo "Fornecedor" -->
+                    <p>Preencha os dados do fornecedor:</p> <!-- Instrução para o usuário -->
+                    <div id="fornecedor">
+                        <!-- Campo de nome da empresa -->
+                        <label for="nome">Nome:</label><br>
+                        <input type="text" id="nome" name="nome" required placeholder="Digite o nome da empresa"><br><br>
 
-            <!-- Campo de CNPJ com validação -->
-            <label for="cnpj">CNPJ:</label><br>
-            <input type="text" id="cnpj" name="cnpj" oninput="validarCNPJ(this)" required placeholder="Ex. xxxxxxxxxxxxxx"><br><br>
-            <script src="validacao-cnpj.js"></script> <!-- Script externo para validação de CNPJ -->
+                        <!-- Campo de CNPJ com validação -->
+                        <label for="cnpj">CNPJ:</label><br>
+                        <input type="text" id="cnpj" name="cnpj" oninput="validarCNPJ(this)" required placeholder="Ex. xxxxxxxxxxxxxx"><br><br>
+                        <script src="validacao-cnpj.js"></script> <!-- Script externo para validação de CNPJ -->
 
-            <!-- Campo usuario -->
-            <label for="user">Usuario:</label>
-            <input type="text" id="user" name="user" required placeholder="Digite o usuario"><br><br>
+                        <!-- Campo usuario -->
+                        <label for="user">Usuario:</label>
+                        <input type="text" id="user" name="user" required placeholder="Digite o usuario"><br><br>
 
-            
-            <!-- Campo usuario -->
-            <label for="email">E-mail:</label>
-            <input type="text" id="email" name="email" required placeholder="Digite o E-mail"><br><br>
+                        
+                        <!-- Campo usuario -->
+                        <label for="email">E-mail:</label>
+                        <input type="text" id="email" name="email" required placeholder="Digite o E-mail"><br><br>
 
-        </div>
+                </div>
+            </fieldset>
+        </section>
 
         <!-- Botão para ocultar/exibir o bloco "serviço" -->
         <button type="button" onclick="ocultarBloco('servico')"></button><br><br>
         
-        <div id="servico">
-            <!-- Seleção do tipo de serviço prestado -->
-            <label for="servico">Serviço:</label><br>
-            <select id="servico" name="servico" required>
-                <option value="" disabled selected>Selecione um serviço</option>
-                
-                <!-- Diversas categorias de serviços -->
-                <!-- Tecnologia e TI -->
-                <option value="Desenvolvimento de Software">Desenvolvimento de Software</option>
-                <option value="Suporte Técnico em TI">Suporte Técnico em TI</option>
-                <option value="Segurança da Informação">Segurança da Informação</option>
-                <option value="Desenvolvimento de Aplicativos">Desenvolvimento de Aplicativos</option>
-                <option value="Gestão de Infraestrutura em Nuvem">Gestão de Infraestrutura em Nuvem</option>
-                <option value="Automação de Processos">Automação de Processos</option>
-            
-                <!-- Consultoria e Treinamento -->
-                <option value="Consultoria Empresarial">Consultoria Empresarial</option>
-                <option value="Consultoria Financeira">Consultoria Financeira</option>
-                <option value="Consultoria em RH">Consultoria em RH</option>
-                <option value="Treinamentos Corporativos">Treinamentos Corporativos</option>
-                <option value="Coaching Profissional">Coaching Profissional</option>
-            
-                <!-- Saúde e Bem-Estar -->
-                <option value="Atendimento Médico Domiciliar">Atendimento Médico Domiciliar</option>
-                <option value="Fisioterapia e Reabilitação">Fisioterapia e Reabilitação</option>
-                <option value="Terapia e Psicologia">Terapia e Psicologia</option>
-                <option value="Personal Trainer">Personal Trainer</option>
-                <option value="Nutrição e Dietética">Nutrição e Dietética</option>
-            
-                <!-- Engenharia e Construção -->
-                <option value="Projetos Arquitetônicos">Projetos Arquitetônicos</option>
-                <option value="Manutenção Predial">Manutenção Predial</option>
-                <option value="Engenharia Elétrica e Hidráulica">Engenharia Elétrica e Hidráulica</option>
-                <option value="Paisagismo e Jardinagem">Paisagismo e Jardinagem</option>
-                <option value="Topografia e Georreferenciamento">Topografia e Georreferenciamento</option>
-            
-                <!-- Marketing e Publicidade -->
-                <option value="Marketing Digital">Marketing Digital</option>
-                <option value="Criação de Sites">Criação de Sites</option>
-                <option value="Gestão de Redes Sociais">Gestão de Redes Sociais</option>
-                <option value="Produção de Conteúdo">Produção de Conteúdo</option>
-                <option value="Edição de Vídeos">Edição de Vídeos</option>
-            
-                <!-- Jurídico e Contabilidade -->
-                <option value="Assessoria Jurídica">Assessoria Jurídica</option>
-                <option value="Contabilidade e Escrituração Fiscal">Contabilidade e Escrituração Fiscal</option>
-                <option value="Consultoria Tributária">Consultoria Tributária</option>
-                <option value="Registro de Marcas e Patentes">Registro de Marcas e Patentes</option>
-            
-                <!-- Logística e Transportes -->
-                <option value="Transporte de Cargas">Transporte de Cargas</option>
-                <option value="Logística e Armazenamento">Logística e Armazenamento</option>
-                <option value="Entrega e Motoboy">Entrega e Motoboy</option>
-                <option value="Mudanças e Fretes">Mudanças e Fretes</option>
-            
-                <!-- Outros Serviços -->
-                <option value="Fotografia e Filmagem">Fotografia e Filmagem</option>
-                <option value="Eventos e Cerimoniais">Eventos e Cerimoniais</option>
-                <option value="Tradução e Interpretação">Tradução e Interpretação</option>
-                <option value="Serviços Domésticos">Serviços Domésticos</option>
-                <option value="Manutenção de Equipamentos">Manutenção de Equipamentos</option>
-            </select><br><br>
 
-            <!-- Campo de descrição do serviço -->
-            <label for="descricao">Descrição:</label><br>
-            <input type="text" id="descricao" name="descricao" required placeholder="Informa a dercição sobre o serviço"><br><br>
-        </div>
+        <section>
+            <fieldset>
+                <legend>Serviço</legend> <!-- Título do campo "Serviço" -->
+                    <p>Preencha os dados do serviço:</p> <!-- Instrução para o usuário -->
+                    <div id="servico">
+                        <!-- Seleção do tipo de serviço prestado -->
+                        <label for="servico">Serviço:</label><br>
+                        <select id="servico" name="servico" required>
+                            <option value="" disabled selected>Selecione um serviço</option>
+                            
+                            <option value="Desenvolvimento de Software">Desenvolvimento de Software</option>
+                            <option value="Desenvolvimento Web">Desenvolvimento Web</option>
+                            <option value="Desenvolvimento Mobile">Desenvolvimento Mobile</option>
+                            <option value="Desenvolvimento de Aplicativos">Desenvolvimento de Aplicativos</option>
+                            <option value="Suporte Técnico em TI">Suporte Técnico em TI</option>
+                            <option value="Segurança da Informação">Segurança da Informação</option>
+                            <option value="Gestão de Infraestrutura em Nuvem">Gestão de Infraestrutura em Nuvem</option>
+                            <option value="Cloud Computing">Cloud Computing</option>
+                            <option value="Automação de Processos">Automação de Processos</option>
+                            <option value="Administração de Banco de Dados">Administração de Banco de Dados</option>
+                            <option value="Análise de Dados e BI">Análise de Dados e BI</option>
+                            <option value="Inteligência Artificial e Machine Learning">Inteligência Artificial e Machine Learning</option>
+                            <option value="DevOps e Integração Contínua">DevOps e Integração Contínua</option>
+                            <option value="Teste e Garantia de Qualidade (QA)">Teste e Garantia de Qualidade (QA)</option>
+                            <option value="Criação de Sites">Criação de Sites</option>
+                            <option value="Gestão de Redes Sociais">Gestão de Redes Sociais</option>
+                            <option value="Marketing Digital">Marketing Digital</option>
+                            <option value="Produção de Conteúdo">Produção de Conteúdo</option>
+                            <option value="Edição de Vídeos">Edição de Vídeos</option>
+                            <option value="Manutenção de Equipamentos">Manutenção de Equipamentos</option>
+                            
+                        </select><br><br>
+            
+                        <!-- Campo de descrição do serviço -->
+                        <label for="descricao">Descrição:</label><br>
+                        <input type="text" id="descricao" name="descricao" required placeholder="Informa a dercição sobre o serviço"><br><br>
+                    </div>
+            </fieldset>
+        </section>
+ 
         
         <!-- Botão para ocultar/exibir o bloco "endereço" -->
         <button type="button" onclick="ocultarBloco('endereco')"></button><br><br>
         
-        <div id="endereco">
-            <!-- Campos de endereço do fornecedor -->
-            <label for="logradouro">logradouro</label>
-            <input type="text" id="logradouro" name="logradouro" required placeholder="Digite o logradouro"><br><br>
+        <section>
+            <fieldset>
+                <legend>Endereço</legend> <!-- Título do campo "Endereço" -->
+                    <p>Preencha os dados do endereço:</p> <!-- Instrução para o usuário -->
+                    <div id="endereco">
+                        <!-- Campos de endereço do fornecedor -->
+                        <label for="logradouro">logradouro</label>
+                        <input type="text" id="logradouro" name="logradouro" required placeholder="Digite o logradouro"><br><br>
+            
+                        <label for="numero">Numero</label>
+                        <input type="text" id="numero" name="numero" required placeholder="Digite o Numero"><br><br>
+                        
+                        <label for="complemento">Complemento</label>
+                        <input type="text" id="complemento" name="complemento" placeholder="Digite o Complemento"><br><br>
+                        
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep" required placeholder="Digite o CEP"><br><br>
+                        
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" required placeholder="Digite o Bairro"><br><br>
+                        
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" required placeholder="Digite a Cidade"><br><br>
+                        
+                        <label for="uf">UF</label>
+                        <input type="text" id="uf" name="uf" required placeholder="Digite o UF"><br><br>
+                    </div>
+            </fieldset>
+        </section>
 
-            <label for="numero">Numero</label>
-            <input type="text" id="numero" name="numero" required placeholder="Digite o Numero"><br><br>
-            
-            <label for="complemento">Complemento</label>
-            <input type="text" id="complemento" name="complemento" placeholder="Digite o Complemento"><br><br>
-            
-            <label for="cep">CEP</label>
-            <input type="text" id="cep" name="cep" required placeholder="Digite o CEP"><br><br>
-            
-            <label for="bairro">Bairro</label>
-            <input type="text" id="bairro" name="bairro" required placeholder="Digite o Bairro"><br><br>
-            
-            <label for="cidade">Cidade</label>
-            <input type="text" id="cidade" name="cidade" required placeholder="Digite a Cidade"><br><br>
-            
-            <label for="uf">UF</label>
-            <input type="text" id="uf" name="uf" required placeholder="Digite o UF"><br><br>
-        </div>
 
         <!-- Botão para ocultar/exibir o bloco "telefone" -->
         <button type="button" onclick="ocultarBloco('telefone')"></button><br><br>
         
-        <div id="telefone">
-            <!-- Campos de contato -->
-            <label for="principal">Principal</label>
-            <input type="text" id="principal" name="principal" placeholder="Digite o telefone principal"><br><br>
-        
-            <label for="telefone">Telefone</label>
-            <input type="text" id="telefone" name="telefone" placeholder="Digite o telefone"><br><br>
-        
-            <label for="celular">Celular</label>
-            <input type="text" id="celular" name="celular" placeholder="Digite o celular"><br><br>
-        </div>
+        <section>
+            <fieldset>
+                <legend>Telefone</legend>
+                <p>Preencha os dados de contato:
+                <div id="telefone">
+                    <!-- Campos de contato -->
+                    <label for="principal">Principal</label>
+                    <input type="text" id="principal" name="principal" placeholder="Digite o telefone principal"><br><br>
+                
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone" name="telefone" placeholder="Digite o telefone"><br><br>
+                
+                    <label for="celular">Celular</label>
+                    <input type="text" id="celular" name="celular" placeholder="Digite o celular"><br><br>
+                </div>
+                </p>
+            </fieldset>
+        </section>
+
 
         <!-- Botão para ocultar/exibir o bloco "contratos" -->
         <button type="button" onclick="ocultarBloco('contratos')"></button><br><br>
+        <section>
+            <fieldset>
+                <legend>Contratos</legend> <!-- Título do campo "Contratos" -->
+                <p>Preencha os dados de contato:
+                </p>
+                <div id="contratos">
+                    <!-- Período de contrato -->
+                    <label for="data_inicial">Data Inicial</label>
+                    <input type="date" id="data_inicial" name="data_inicial" required><br><br>
+                
+                    <label for="data_final">Data Final</label>
+                    <input type="date" id="data_final" name="data_final" required><br><br>
+                </div>
         
-        <div id="contratos">
-            <!-- Período de contrato -->
-            <label for="data_inicial">Data Inicial</label>
-            <input type="date" id="data_inicial" name="data_inicial" required><br><br>
-        
-            <label for="data_final">Data Final</label>
-            <input type="date" id="data_final" name="data_final" required><br><br>
-        </div>
+
+            </fieldset>
+        </section>
 
         <!-- Botão para ocultar/exibir o bloco "clientes_fornecedor" -->
         <button type="button" onclick="ocultarBloco('clientes_fornecedor')"></button><br><br>
         
-        <div id="clientes_fornecedor">
-            <!-- Informações de clientes e serviços prestados -->
-            <label for="servicos">Serviço</label>
-            <input type="text" id="servicos" name="servicos" placeholder="Digite o serviço"><br><br>
+        <section>
+            <fieldset>
+                <legend>Clientes</legend> <!-- Título do campo "Clientes" -->
+                <p>Preencha os dados de Serviços prestados:
+                </p>
+                <div id="clientes_fornecedor">
+                    <!-- Informações de clientes e serviços prestados -->
+                    <label for="servicos">Serviço</label>
+                    <input type="text" id="servicos" name="servicos" placeholder="Digite o serviço"><br><br>
+                
+                    <label for="cliente">Cliente</label>
+                    <input type="text" id="cliente" name="cliente" placeholder="Digite o cliente"><br><br>
+                </div>
         
-            <label for="cliente">Cliente</label>
-            <input type="text" id="cliente" name="cliente" placeholder="Digite o cliente"><br><br>
-        </div>
-
+            </fieldset>
         <!-- Script para ocultar blocos dinamicamente -->
         <script src="OcultarBloco.js"></script> 
 
         <!-- Botão de envio do formulário -->
+        <br><br>
         <input type="submit" value="Cadastrar">
+    
     </form>
     
 </body>

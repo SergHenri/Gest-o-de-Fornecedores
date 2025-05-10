@@ -3,13 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <title>Criação de Usuários</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+    
+        h2 {
+            margin-top: 30px;
+            font-size: 36px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+    
+        nav {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+    
+        nav a {
+            text-decoration: none;
+            padding: 10px 25px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 20px;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+    
+        nav a:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+    
+        form {
+            background-color: #fff;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+    
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #34495e;
+        }
+    
+        form input[type="text"],
+        form input[type="password"],
+        form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+    
+        form input[type="text"]:focus,
+        form input[type="password"]:focus,
+        form select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            outline: none;
+        }
+    
+        form input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+    
+        form input[type="submit"]:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
 
     <h2>Criação de Usuários</h2>
     
     <nav>
-        <a href="PageOne.html">Inicial</a>
+        <a href="PageOne.html">Tela Inicial</a>
         <a href="index.php">Fornecedores</a>
     </nav>
 

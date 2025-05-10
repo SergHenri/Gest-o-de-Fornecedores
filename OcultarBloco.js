@@ -4,11 +4,11 @@ function ocultarBloco(idfornecedor) {
     var fornecedor = document.getElementById(idfornecedor);
 
     // Verifica se o elemento está atualmente escondido (display: none)
-    if (fornecedor.style.display === 'none') {
+    if (fornecedor.style.display === 'block') {
         // Se estiver escondido, mostra o elemento (display: block)
-        fornecedor.style.display = 'block';
+        fornecedor.style.display = 'none';
     } else {
         // Se estiver visível, esconde o elemento (display: none)
-        fornecedor.style.display = 'none';
+        fornecedor.style.display = 'block';
     }
 }

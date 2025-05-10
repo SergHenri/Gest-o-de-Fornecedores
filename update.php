@@ -49,46 +49,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindValue(":valor_filtro", $valor_filtro);
 
             if ($stmt->execute()) {
-                echo "Registro atualizado com sucesso!";
+                echo '<h3 style="text-align: center; margin-top: 20px; font-family: Tahoma, Geneva, Verdana, sans-serif;"> Registro atualizado com sucesso! </h3>';
             } else {
-                echo "Erro ao atualizar o registro.";
+                echo '<h3 style="text-align: center; margin-top: 20px; font-family: Tahoma, Geneva, Verdana, sans-serif;""> Erro ao atualizar o registro. </h3>';
             }
         } catch (PDOException $e) {
             echo "Erro na atualização: " . $e->getMessage();
         }
     }
 
-    // BLOCO DE DELEÇÃO
-    if ($acao == "deletar") {
-        // Monta a query SQL para deletar registros filtrando pela coluna indicada
-        $sql = "DELETE FROM $tabela WHERE $coluna_filtro = :valor_filtro";
-
-        try {
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(":valor_filtro", $valor_filtro);
-
-            if ($stmt->execute()) {
-                echo "Registro deletado com sucesso!";
-            } else {
-                echo "Erro ao deletar o registro.";
-            }
-        } catch (PDOException $e) {
-            echo "Erro na exclusão: " . $e->getMessage();
-        }
-    }
 }
 
 // Exibe dois botões de navegação após a ação (atualização ou exclusão)
-echo '<div>
-<a href="PageOne.html">
-    <button>
-        Voltar à Página Inicial
-    </button>
-</a>
-<a href="CadastroFornecedor.html">
-    <button>
-        Cadastrar Novo Fornecedor
-    </button>
-</a>
+echo '<div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+        <a href="PageOne.html" style="text-decoration: none;">
+            <button style="
+                    background: #1976d2;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background 0.3s ease;
+                " 
+                onmouseover="this.style.background=\'#1565c0\'" 
+                onmouseout="this.style.background=\'#1976d2\'">
+                Voltar à Página Inicial
+            </button>
+        </a>
+        <a href="CadastroFornecedor.html">
+            <button style="
+                    background: #1976d2;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background 0.3s ease;
+                " 
+                onmouseover="this.style.background=\'#1565c0\'" 
+                onmouseout="this.style.background=\'#1976d2\'">
+                Cadastrar Novo Fornecedor
+            </button>
+        </a>
 </div>';
 ?>
