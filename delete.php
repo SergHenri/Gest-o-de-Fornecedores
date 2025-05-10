@@ -54,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Executa a query e verifica se foi bem-sucedida
             if ($stmt->execute()) {
-                echo "Registro excluído com sucesso!";
+                echo '<h3 style="text-align: center; margin-top: 20px; font-family: Tahoma, Geneva, Verdana, sans-serif;"> Registro excluído com sucesso! </h3>';
             } else {
-                echo "Erro ao excluir o registro.";
+                echo '<h3 style="text-align: center; margin-top: 20px; font-family: Tahoma, Geneva, Verdana, sans-serif;"> Erro ao excluir o registro.</h3>';
             }
         } catch (PDOException $e) {
             // Captura erros durante a execução da query
@@ -66,14 +66,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Após a execução, exibe dois botões para voltar à página inicial ou cadastrar um novo fornecedor
-echo '<div>
-<a href="PageOne.html">
-    <button>
+echo '<div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+<a href="PageOne.html" style="text-decoration: none;">
+    <button style="
+                    background: #1976d2;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background 0.3s ease;
+                " 
+                onmouseover="this.style.background=\'#1565c0\'" 
+                onmouseout="this.style.background=\'#1976d2\'">
         Voltar à Página Inicial
     </button>
 </a>
-<a href="CadastroFornecedor.html">
-    <button>
+<a href="CadastroFornecedor.html" style="text-decoration: none;">
+    <button style="
+                    background: #1976d2;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background 0.3s ease;
+                " 
+                onmouseover="this.style.background=\'#1565c0\'" 
+                onmouseout="this.style.background=\'#1976d2\'">
         Cadastrar Novo Fornecedor
     </button>
 </a>

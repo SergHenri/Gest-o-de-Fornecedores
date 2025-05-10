@@ -78,7 +78,7 @@ echo '<div style="display: flex; gap: 10px; justify-content: center; margin-top:
                 Voltar à Página Inicial
             </button>
         </a>
-        <a href="CadastroFornecedor.html">
+        <a href="CadastroFornecedor.html" style="text-decoration: none;">
             <button style="
                     background: #1976d2;
                     color: white;

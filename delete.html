@@ -1,46 +1,163 @@
-<!DOCTYPE html> <!-- Define que o documento segue o padrão HTML5 -->
-<html lang="pt-br"> <!-- Define que o idioma da página é português do Brasil -->
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante responsividade em dispositivos móveis -->
-    <title>Atualizar ou Deletar Registro</title> <!-- Título exibido na aba do navegador -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar ou Deletar Registro</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+            background-color: #2980b9;
+            padding: 9px;
+            border-radius: 14px;
+        }
+
+        nav a:hover {
+            color: white;
+            background-color: #1f5f8b;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 0.4px solid #ddd;
+        }
+
+        fieldset {
+            padding: 20px;
+            border-radius: 6px;
+            border-color: #0f7fc9;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #1f5f8b;
+        }
+
+        @media (max-width: 640px) {
+            form {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Atualizar ou Deletar Registro</h2> <!-- Título principal exibido na página -->
+    <h2>Deletar Registro</h2>
 
-    <!-- Área de navegação com links para outras páginas do sistema -->
     <nav>
-        <a href="PageOne.html">Inicial</a> <!-- Link que leva para a página inicial -->
-        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a> <!-- Link que leva para a página de cadastro -->
-        <a href="update.html">Editar</a> <!-- Link que leva para a página de edição de registros -->
+        <a href="PageOne.html">Inicial</a>
+        <a href="CadastroFornecedor.html">Cadastro de Fornecedores</a>
+        <a href="update.html">Editar</a>
     </nav>
 
-    <br><br> <!-- Quebra de linha dupla para espaçamento -->
-
-    <!-- Formulário para exclusão de um registro no banco de dados -->
-    <!-- Os dados serão enviados via método POST para o script 'delete.php' -->
     <form action="delete.php" method="POST">
+        <fieldset>
+            <legend>Informe o nome da tabela</legend>
+            <label for="tabela">Nome da Tabela:</label>
+            <input type="text" name="tabela" required>
+        </fieldset>
 
-        <!-- Campo para o nome da tabela onde será feita a exclusão -->
-        <label for="tabela">Nome da Tabela:</label>
-        <input type="text" name="tabela" required> <!-- Campo obrigatório -->
-        <br><br>
+        <br>
 
-        <!-- Campo para o nome da coluna usada na condição do WHERE -->
-        <label for="coluna_deletar">Nome da Coluna para deletar:</label>
-        <input type="text" name="coluna_deletar"> <!-- Campo opcional, mas importante para deletar um item específico -->
-        <br><br>
+        <fieldset>
+            <legend>Informe a coluna para filtragem</legend>
+            <label for="coluna_deletar">Nome da coluna</label>
+            <input type="text" name="coluna_deletar">
+        </fieldset>
 
-        <!-- Campo para o valor que será usado como filtro (exemplo: excluir onde id = 3) -->
-        <label for="valor_delete">Valor da Coluna Filtrada:</label>
-        <input type="text" name="valor_delete" required> <!-- Campo obrigatório -->
-        <br><br>
+        <br>
 
-        <!-- Botão que envia o formulário e executa a ação de deletar -->
-        <!-- O valor "deletar" será usado no PHP para identificar a ação -->
+        <fieldset>
+            <legend>Valor da coluna filtrada</legend>
+            <label for="valor_delete">Valor da Coluna:</label>
+            <input type="text" name="valor_delete" required>
+        </fieldset>
+
+        <br>
+
         <button type="submit" name="acao" value="deletar">Excluir</button>
     </form>
 </body>
+
 </html>
